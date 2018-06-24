@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "GpioStateMonitor";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>Led State Monitor</h2>
+        @ViewData["Message"]
+        <table class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th>GPIO Pin No. (BCM)</th>
+                    <th>GPIO Pin No. (wri)</th>
+                    <th>Led Color</th>
+                    <th>State</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>8</td>
+                    <td>Yellow</td>
+                    <td>@ViewData["Pin8Value"]</td>
+                    <td>
+                        <a href="@Url.Action("ChangeLed","LedStateMonitor", new {pinNo = 8, isOn = true})"
+                           class="btn btn-info btn-sm">LIGHT ON</a>
+                        <a href="@Url.Action("ChangeLed","LedStateMonitor", new {pinNo = 8, isOn = false})"
+                           class="btn btn-default btn-sm">LIGHT OFF</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>22</td>
+                    <td>Red</td>
+                    <td>@ViewData["Pin22Value"]</td>
+                    <td>
+                        <a href="@Url.Action("ChangeLed","LedStateMonitor", new {pinNo = 22, isOn = true})"
+                           class="btn btn-info btn-sm">LIGHT ON</a>
+                        <a href="@Url.Action("ChangeLed","LedStateMonitor", new {pinNo = 22, isOn = false})"
+                           class="btn btn-default btn-sm">LIGHT OFF</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
