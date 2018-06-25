@@ -1,7 +1,18 @@
-﻿
-@{
+﻿@using CoreTestApp.Controllers;
+
+@{    
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
-
+<div class="row">
+    <div class="col-md-3">
+        <h2>Alerm Test</h2>
+        <a href="@Url.Action("Beep","Alarm", new { pitch = Pitch.Do })" class="btn btn-info btn-sm">Do</a>
+        <a href="@Url.Action("Beep","Alarm", new { pitch = Pitch.Re })" class="btn btn-info btn-sm">Re</a>
+        <a href="@Url.Action("Beep","Alarm", new { pitch = Pitch.Mi })" class="btn btn-info btn-sm">Mi</a>
+        <a href="@Url.Action("Beep","Alarm", new { pitch = Pitch.Fa })" class="btn btn-info btn-sm">Fa</a>
+        <a href="@Url.Action("Beep","Alarm", new { pitch = Pitch.So })" class="btn btn-info btn-sm">So</a>
+        <a href="@Url.Action("Beep","Alarm", new { pitch = Pitch.Ra })" class="btn btn-info btn-sm">Ra</a>
+        <a href="@Url.Action("Beep","Alarm", new { pitch = Pitch.Si })" class="btn btn-info btn-sm">Si</a>
+    </div>
+</div>
