@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CoreTestApp.Hubs;
 
 namespace CoreTestApp
 {
@@ -14,6 +16,8 @@ namespace CoreTestApp
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            // 非同期処理を開始
         }
 
         public IConfiguration Configuration { get; }
@@ -22,6 +26,7 @@ namespace CoreTestApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +43,7 @@ namespace CoreTestApp
             }
 
             app.UseStaticFiles();
+            app.UseSignalR(x => x.MapHub<ChatHub>("/chat"));
 
             app.UseMvc(routes =>
             {
@@ -45,6 +51,7 @@ namespace CoreTestApp
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        
         }
     }
 }

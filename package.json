@@ -1,0 +1,23 @@
+{
+  "name": "CoreTestApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logikuma1024/CoreTestApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/logikuma1024/CoreTestApp/issues"
+  },
+  "homepage": "https://github.com/logikuma1024/CoreTestApp#readme",
+  "dependencies": {
+    "@aspnet/signalr": "^1.0.0"
+  }
+}
