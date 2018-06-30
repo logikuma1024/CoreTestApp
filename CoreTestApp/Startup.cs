@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CoreTestApp.Hubs;
+using CoreTestApp.Models;
 
 namespace CoreTestApp
 {

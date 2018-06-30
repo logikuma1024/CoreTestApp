@@ -10,7 +10,7 @@ namespace CoreTestApp.Models
     /// <summary>
     /// GPIOピンの状態変更イベント
     /// </summary>
-    class ChangePinsStateEventArgs : EventArgs
+    public class ChangePinsStateEventArgs : EventArgs
     {
         public ReadOnlyDictionary<int, bool> Pins { get; }
 
@@ -23,7 +23,7 @@ namespace CoreTestApp.Models
     /// <summary>
     /// GPIOピンの入力を待機するリスナークラス
     /// </summary>
-    class Listener
+    public class Listener
     {
         // 
         public event EventHandler<EventArgs> Started;
