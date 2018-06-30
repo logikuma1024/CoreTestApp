@@ -32,29 +32,33 @@ namespace CoreTestApp.Hubs
                 // 変更された時だけ実行する
                 .Where(x => !x.Item1.SequenceEqual(x.Item2))
                 .Subscribe(_ => {
-                    // TODO: 状態変更にピンのNoと値をメンバ変数として書き換えたい
-                    _message = "xvideos";
+                    // 状態変更にピンのNoと値をメンバ変数として書き換えたい
+                    var timestamp = DateTime.Now.ToString();
+                    Clients.All.SendAsync("Receive", "xvideos" ,timestamp);
                 });
         }
 
         /// <summary>
-        /// 
+        /// newは基本禁じ手やでな
+        /// TODO: または、disposedイベント持ってればそれ登録してその中で解放すればいいかな
         /// </summary>
-        ~ChatHub()
+        public new void Dispose()
         {
-            // デストラクタは誤り？
+            base.Dispose();
             _listener.Dispose();
         }
 
+        /// <summary>
+        /// ボタン押下時のハンドラ
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public Task Broadcast(string message)
         {
             // ピンの状態変更を発生させてみる
             list[0] = !list[0];
-           
-            var timestamp = DateTime.Now.ToString();
 
-            // メッセージを画面にSignalRで描画
-            return Clients.All.SendAsync("Receive", _message, timestamp);
+            return null;
         }
     }
 
