@@ -28,6 +28,7 @@ namespace CoreTestApp
         {
             services.AddMvc();
             services.AddSignalR();
+            services.AddSingleton<GpioHub, GpioHub>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +45,7 @@ namespace CoreTestApp
             }
 
             app.UseStaticFiles();
-            app.UseSignalR(x => x.MapHub<ChatHub>("/chat"));
+            app.UseSignalR(x => x.MapHub<GpioHub>("/chat"));
 
             app.UseMvc(routes =>
             {
