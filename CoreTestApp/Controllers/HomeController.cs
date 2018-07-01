@@ -11,7 +11,7 @@ namespace CoreTestApp.Controllers
 {
     public class HomeController : Controller
     {
-        private GpioHub _hub;
+        private GpioHub  _hub;
 
         public HomeController(GpioHub chatHub)
         {

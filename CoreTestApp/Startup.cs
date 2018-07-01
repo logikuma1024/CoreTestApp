@@ -45,7 +45,7 @@ namespace CoreTestApp
             }
 
             app.UseStaticFiles();
-            app.UseSignalR(x => x.MapHub<GpioHub>("/chat"));
+            app.UseSignalR(x => x.MapHub<GpioHub>("/gpio"));
 
             app.UseMvc(routes =>
             {

@@ -32,6 +32,11 @@ namespace CoreTestApp.Hubs
         private int SwitchCount;
 
         /// <summary>
+        /// モーションセンサの状態
+        /// </summary>
+        private bool Motion;
+
+        /// <summary>
         /// コンストラクタ
         /// </summary>
         public GpioHub()
@@ -53,6 +58,9 @@ namespace CoreTestApp.Hubs
                     {
                         SwitchCount++;
                     }
+
+                    // GPIOピン6番（モーションセンサスイッチ）の状態をセットする
+                    Motion = x.Item2[6] == GpioPinValue.High;
                 });
 
             
@@ -62,6 +70,8 @@ namespace CoreTestApp.Hubs
                 this.GpioValueList = Pi.Gpio.Pins.Select(x => x.ReadValue()).ToList();
                 // タクトスイッチのON回数をリセット
                 this.SwitchCount = 0;
+                // モーションセンサスイッチの状態をリセット
+                this.Motion = Pi.Gpio.Pins[6].Read();
             }
         }
 
@@ -81,6 +91,12 @@ namespace CoreTestApp.Hubs
         /// </summary>
         /// <returns></returns>
         public int GetCurrentVal() => SwitchCount;
+
+        /// <summary>
+        /// SignalR呼び出し（現在のスイッチON回数取得）
+        /// </summary>
+        /// <returns></returns>
+        public Task GetSwitchCount() => Clients.All.SendAsync("Receive", SwitchCount, Motion);
     }
 
     /// <summary>
